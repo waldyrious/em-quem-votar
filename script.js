@@ -58,7 +58,10 @@ function calculate() {
 				results[p][1] -= 4;
 			}
 		}
-		var percentage = results[p][1]>0 ? Math.round((results[p][1]-results[p][0])/results[p][1]*100) + "%" : "unknown" ;
+		var percentage = "desconhecido";
+		if ( results[p][1]>0 ) { // avoid division by zero
+			percentage = Math.round((results[p][1]-results[p][0])/results[p][1]*100) + "%";
+		}
 		var pctDisplay = document.querySelector("#" + p + ">span.pct");
 		pctDisplay.innerHTML = percentage;
 	}
