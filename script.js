@@ -5,14 +5,14 @@ window.onload = init;
 function init() {
 	var qs = document.querySelector("#questions");
 	qs.firstElementChild.className = "selected";
-	var labels = ["Discordo totalmente", "Discordo", "Sem opinião", "Concordo", "Concordo totalmente"];
+	var scores = ["Discordo totalmente", "Discordo", "Sem opinião", "Concordo", "Concordo totalmente"];
 	for (var i = 1; i <= qs.childElementCount; i++) {
 		var options = "";
-		for (var l in labels) {
-			var id = "q" + i + "_" + labels[l].match(/\b(\S)/g).join('').toLowerCase();
+		for (var sc in scores) {
+			var id = "q" + i + "_" + scores[sc].match(/\b(\S)/g).join('').toLowerCase();
 			options += "<input type='radio' name='q" + i + "' " +
-				"id='" + id + "' value='" + (l - 2) + "' onchange='next(this);'/>" +
-				"<label for='" + id + "'>" + labels[l] + "</label>\n";
+				"id='" + id + "' value='" + (sc - 2) + "' onchange='next(this);'/>" +
+				"<label for='" + id + "'>" + scores[sc] + "</label>\n";
 		}
 		qs.children[i - 1].innerHTML += options;
 	}
