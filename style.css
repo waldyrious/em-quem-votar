@@ -1,0 +1,59 @@
+body {
+	font-family: sans-serif;
+	line-height: 1.5;
+}
+
+#questions li {
+	padding: 1em;
+	border-radius: 10px;
+	color: silver;
+}
+
+#questions li.selected {
+	background-color: PowderBlue;
+	color: black;
+}
+
+p {
+	margin-top: 0;
+}
+
+input[type=radio] {
+	margin-left: 1em;
+}
+
+li.selected label{
+	background-color: LightSeaGreen;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+button {
+	font-size: large;
+	display: block;
+	margin: 0 auto;
+}
+
+#results {
+	position: fixed;
+	top: 0;
+	left: 0;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	background-color: LightSlateGray;
+	color: white;
+	font-size: large;
+	text-align: center;
+	display: none;
+}
+
+#results div{
+	display: inline-block;
+	text-align: left;
+	margin: 10%;
+}
+
+#results li {
+	margin: 1em;
+}

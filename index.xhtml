@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Em quem votar no dia 25?</title>
+	<link rel="stylesheet" href="style.css" />
+	<script src="script.js"></script>
+</head>
+<body>
+	<h1>Em quem votar no dia 25?</h1>
+	<p>Esta página pretende ajudar os cidadãos portugueses
+	na escolha do partido a votar nas
+	<a href="http://pt.wikipedia.org/wiki/Elei%C3%A7%C3%B5es_parlamentares_europeias_de_2014_(Portugal)">
+	Eleições Parlamentares Europeias a 25 de Maio de 2014.</a><br />
+	Os dados foram recolhidos pela <a href="http://www.euvox2014.eu">EUvox2014.eu</a>.</p>
+	<p>Responda às seguintes questões
+	para identificar que partidos defendem as mesmas posições:</p>
+	<ol id="questions">
+		<li>
+			<p>Portugal deve abandonar o Euro (moeda).</p>
+		</li>
+		<li>
+			<p>Um Estado-Membro deve poder bloquear uma alteração aos Tratados Europeus,
+			ainda que todos os outros países sejam favoráveis a essa alteração.</p>
+		</li>
+		<li>
+			<p>O direito de cidadãos Europeus trabalharem em Portugal
+			deve ser restringido.</p>
+		</li>
+		<li>
+			<p>Devia existir uma política externa europeia comum,
+			ainda que isso limite a capacidade de Portugal poder actuar
+			de forma independente.</p>
+		</li>
+		<li>
+			<p>A União Europeia deve redistribuir recursos
+			de regiões europeias mais ricas para regiões mais pobres.</p>
+		</li>
+		<li>
+			<p>De uma forma global, a pertença à União Europeia
+			tem sido má para Portugal.</p>
+		</li>
+		<li>
+			<p>Os tratados da União Europeia devem ser ratificados
+			pela Assembleia da República e não através de referendo.</p>
+		</li>
+		<li>
+			<p>A integração Europeia já foi longe demais.</p>
+		</li>
+		<li>
+			<p>A liberalização do mercado melhora o funcionamento
+			do sistema nacional de saúde.</p>
+		</li>
+		<li>
+			<p>O número de trabalhadores na função pública
+			deve ser reduzido.</p>
+		</li>
+		<li>
+			<p>A intervenção do Estado na economia deve ser a mínima possível.</p>
+		</li>
+		<li>
+			<p>A riqueza deve ser redistribuída
+			dos mais ricos para os mais pobres.</p>
+		</li>
+		<li>
+			<p>Cortar as despesas do Estado
+			é uma boa forma de resolver a crise económica.</p>
+		</li>
+		<li>
+			<p>As empresas devem poder despedir mais facilmente
+			os seus trabalhadores.</p>
+		</li>
+		<li>
+			<p>Os empréstimos externos de instituições
+			como o Fundo Monetário Internacional (FMI)
+			são uma boa solução para situações de crise.</p>
+		</li>
+		<li>
+			<p>Quando o Estado evita a falência de um banco
+			deve também assumir o seu controlo.</p>
+		</li>
+		<li>
+			<p>Para consolidar as contas do país é preciso cortar as pensões.</p>
+		</li>
+		<li>
+			<p>O aumento das taxas moderadoras no sistema nacional de saúde
+			limita o acesso aos cuidados de saúde.</p>
+		</li>
+		<li>
+			<p>O Governo deve cortar o investimento
+			na investigação científica que não é rentável.</p>
+		</li>
+		<li>
+			<p>O Governo deve regular os preços da eletricidade.</p>
+		</li>
+		<li>
+			<p>A implementação do memorando da Troika
+			prejudicou a recuperação económica de Portugal.</p>
+		</li>
+		<li>
+			<p>Os imigrantes devem adaptar-se aos valores da cultura portuguesa.</p>
+		</li>
+		<li>
+			<p>As restrições à privacidade dos cidadãos são aceitáveis
+			a fim de se combater o crime.</p>
+		</li>
+		<li>
+			<p>Para manter a ordem pública,
+			os governos devem poder limitar as manifestações.</p>
+		</li>
+		<li>
+			<p>Os crimes menos graves deviam ser punidos
+			com trabalho comunitário e não com pena de prisão.</p>
+		</li>
+		<li>
+			<p>Os casais do mesmo sexo devem poder casar
+			tal como os casais heterossexuais.</p>
+		</li>
+		<li>
+			<p>Em matéria de aborto a mulher deve poder decidir livremente.</p>
+		</li>
+		<li>
+			<p>O uso recreativo de canábis deve ser descriminalizado.</p>
+		</li>
+		<li>
+			<p>Deve permitir-se o download de material
+			protegido por direitos de autor para uso privado.</p>
+		</li>
+		<li>
+			<p>O Estado deve ter um papel mais forte no sector da Cultura.</p>
+		</li>
+	</ol>
+	<button onclick="calculate()">Calcular!</button>
+	<div id="results">
+		<div>
+		<p title="percentagem de concordância com as posições dos partidos">
+			Os seus resultados
+		</p>
+		<ul>
+			<li id="livre">Livre: <span class="pct">0%</span></li>
+			<li id="ps">PS: <span class="pct">0%</span></li>
+			<li id="pan">PAN: <span class="pct">0%</span></li>
+			<li id="be">BE: <span class="pct">0%</span></li>
+			<li id="mpt">MPT: <span class="pct">0%</span></li>
+			<li id="pctp-mrpp">PCTP-MRPP: <span class="pct">0%</span></li>
+			<li id="cdu">CDU: PCP/PEV: <span class="pct">0%</span></li>
+			<li id="psd-cds-pp">PSD/CDS-PP: <span class="pct">0%</span></li>
+		</ul>
+		<p></p>
+		<hr />
+		<p>Pode consultar em mais detalhe as posições dos partidos
+		<a href="https://docs.google.com/spreadsheets/d/1Lptk7KX0PW7ClJYYJljbtVSw0PIQNaIhUTYfOMGOmxA/edit#gid=0">aqui</a>.
+		Os dados utilizados para este questionário foram recolhidos pela
+		<a href="http://www.euvox2014.eu">EUvox2014.eu</a>.</p>
+		<p>Esta interface pretende apenas fornecer uma forma mais rápida
+		de preencher o questionário, mas recomenda-se vivamente
+		o preenchimento completo em <a href="http://www.euvox2014.eu">EUvox2014.eu</a>,
+		para ter acesso às funcionalidades avançadas,
+		como o mapa de posicionamento político
+		(<a href="http://eu5.euvox.eu/pt/questionnaire/yourResults.php?con=pt&amp;pin=232040776334&amp;lang=português">exemplo</a>).</p>
+		<p>O código desta página é open-source e pode ser consultado
+		<a href="https://github.com/waldir/em-quem-votar/">no GitHub</a>,
+		onde também podem ser deixadas sugestões e críticas.</p>
+		</div>
+	</div>
+</body>
+</html>
