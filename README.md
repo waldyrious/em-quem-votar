@@ -29,7 +29,7 @@ proportionately to their intensity:
 ```
 
 Then subtract *abs(x-y)*, which penalizes disagreement even for scores in the same direction.
-For example, (1,2) should count less than either (1,1) and (2,2).
+For example, (1,2) should count less than (1,1).
 This It also ensures that "no opinion" still correlates (slightly) negatively with any opinion.
 ```
      -2   -1    0    1    2
