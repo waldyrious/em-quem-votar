@@ -46,10 +46,12 @@ This It also ensures that "no opinion" still correlates (slightly) negatively wi
    └────┴────┴────┴────┴────┘
 ```
 
-The formulas are combined as *2(x*y) - 3*abs(x-y)*,
-(using a weight factor of 2 for the first component
-and 3 for the second component; this is made in order
-to ensure that (1,1) gets a heavier score than (1,2) or (2,1)).
+The formulas are then combined as *2(x*y) - 3*abs(x-y)*.
+This uses a weight factor of 2 for the first component
+and 3 for the second component,
+which ensures that, for instance, (1,1) gets a heavier score
+than (1,2) or (2,1) (the opposite was the case
+with the simple multiplication table, or with a weight-less subtraction).
 ```
      -2   -1    0    1    2
    ┌────┬────┬────┬────┬────┐
