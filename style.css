@@ -57,3 +57,28 @@ button {
 #results li {
 	margin: 1em;
 }
+
+#results span {
+	display: inline-block;
+}
+
+#results span.party, #results span.disagree, #results span.agree {
+	width: 8em;
+}
+
+#results span.disagree {
+	text-align: right;
+	border-right: 1px solid black;
+}
+
+#results span.disagree span.bar, #results span.agree span.bar {
+	height: 10px;
+}
+
+#results span.disagree span.bar {
+	background-color: Crimson;
+}
+
+#results span.agree span.bar {
+	background-color: Green;
+}
