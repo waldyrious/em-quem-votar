@@ -5,7 +5,13 @@ window.onload = init;
 function init() {
 	var qs = document.querySelector("#questions");
 	qs.firstElementChild.className = "selected";
-	var scores = ["Discordo totalmente", "Discordo", "Sem opinião", "Concordo", "Concordo totalmente"];
+	var scores = [
+		"Discordo totalmente",
+		"Tendo a discordar",
+		"Sem opinião",
+		"Tendo a concordar",
+		"Concordo totalmente"
+	];
 	for (var i = 1; i <= qs.childElementCount; i++) {
 		var options = "";
 		for (var sc in scores) {
@@ -38,32 +44,50 @@ function calculate() {
 		"psd-cds-pp": [-2,-1,-2, 1, 1,-2, 1,-2, 1, 2, 1, 1, 2, 1, 1,-2, 1,-1, 1,-1,-1, 1, 0,-1, 0,-1,-1,-1,-2,-1]
 	};
 	var qs = document.querySelector("#questions");
+	
+	// Scoring uses the formula 2(x*y) - 3|x-y|.
+	// The first part ensures that matching choices reinforce each other:
+	// - matching values produce a positive score, and more so the stronger they are;
+	// - opposite values produce a negative score, and more so the stronger they are;
+	// The second part penalizes disagreement even for scores in the same direction,
+	// e.g. 1 & 2 should count less than either 1 & 1 and 2 & 2.
+	// It also ensures that "no opinion" still correlates (slightly) negatively with any opinion.
+	// Note: the global score provides a single number that can be used in ranking the parties,
+	// but it is not currently used in the interface.
 
-	var results = {};
-	var maxDisagreement = 4 * qs.childElementCount; // max difference is +2 to -2, and there are 30 questions
-	for (var p in data) { results[p] = [0, maxDisagreement]; } //initialize
+	var results = {
+		"maxAgreement": 0,
+		"maxDisagreement": 0
+	};
+	for (var p in data) { results[p] = { agree : 0, disagree : 0, neutral: 0, total : 0}; }
 
-	// loop over the parties
+	// loop over the parties's answers
 	for (p in data) {
-		// loop over the answers
+		// loop over the user's answers
 		for (var i = 1; i <= qs.childElementCount; i++) {
 			var choice = document.querySelector("input[name=q" + i + "]:checked");
 			var myAnswer = choice !== null ? choice.value : 0;
 			var theirAnswer = data[p][i - 1];
-
-			if (myAnswer !== 0 && theirAnswer !== 0) {
-				results[p][0] += Math.abs(theirAnswer - myAnswer);
+			var score = 2 * (theirAnswer * myAnswer) - 3 * Math.abs(theirAnswer - myAnswer);
+			results[p].total += score;
+			if (score > 0) {
+				results[p].agree += score;
 			} else {
-				// if either of us doesn't care, don't count as agreement
-				results[p][1] -= 4;
+				if (myAnswer === 0 || theirAnswer === 0) { results[p].neutral -= score; }
+				else { results[p].disagree -= score; }
+			}
+			if (p == Object.keys(data)[0]) { // only do this once
+				results.maxAgreement += Math.pow(Math.abs(myAnswer), 3); // 0 => 0; 1 => 1; 2 => 8
+				results.maxDisagreement += 6 + 7 * Math.abs(myAnswer); // 0 => -6; 1 => -13; 2 => -20
 			}
 		}
-		var percentage = "desconhecido";
-		if (results[p][1] > 0) { // avoid division by zero
-			percentage = Math.round((results[p][1] - results[p][0]) / results[p][1] * 100) + "%";
-		}
-		var pctDisplay = document.querySelector("#" + p + ">span.pct");
-		pctDisplay.innerHTML = percentage;
+		var agreeementPercentage = results[p].agree / (results.maxAgreement || 1) * 100;
+		var disagreeementPercentage = results[p].disagree / results.maxDisagreement * 100;
+		var globalPercentage = Math.round(agreeementPercentage - disagreeementPercentage);
+		
+		document.querySelector("#" + p + " > span.agree > span.bar").style.width = agreeementPercentage + "%";
+		document.querySelector("#" + p + " > span.disagree > span.bar").style.width = disagreeementPercentage + "%";
+		document.querySelector("#" + p + " > span.score").innerHTML = globalPercentage + "%";
 	}
 	document.querySelector("#results").style.display = "block";
 }
