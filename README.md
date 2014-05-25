@@ -9,23 +9,28 @@ The formula for the scoring algorithm is described in the following tables
 (where x is the user's choice and y is the party's choice for any given question):
 
 
-Start with x*y:
+Start with *x*y*, which provides a good base,
+amplifying votes with matching signs
+and penalizing opposite votes,
+proportionately to their intensity:
 ```
      -2   -1    0    1    2
    ┌────┬────┬────┬────┬────┐
--2 │  8 │  1 │ -6 │-13 │-20 │
+-2 │  4 │  2 │  0 │ -2 │ -4 │
    ├────┼────┼────┼────┼────┤
--1 │  1 │  2 │ -3 │ -8 │-13 │
+-1 │  2 │  1 │  0 │ -1 │ -2 │
    ├────┼────┼────┼────┼────┤
- 0 │ -6 │ -3 │  0 │ -3 │ -6 │
+ 0 │  0 │  0 │  0 │  0 │  0 │
    ├────┼────┼────┼────┼────┤
- 1 │-13 │ -8 │ -3 │  2 │  1 │
+ 1 │ -2 │ -1 │  0 │  1 │  2 │
    ├────┼────┼────┼────┼────┤
- 2 │-20 │-13 │ -6 │  1 │  8 │
+ 2 │ -4 │ -2 │  0 │  2 │  4 │
    └────┴────┴────┴────┴────┘
 ```
 
-Then subtract abs(x-y):
+Then subtract *abs(x-y)*, which penalizes disagreement even for scores in the same direction.
+For example, (1,2) should count less than either (1,1) and (2,2).
+This It also ensures that "no opinion" still correlates (slightly) negatively with any opinion.
 ```
      -2   -1    0    1    2
    ┌────┬────┬────┬────┬────┐
@@ -41,15 +46,15 @@ Then subtract abs(x-y):
    └────┴────┴────┴────┴────┘
 ```
 
-The formulas are combined as 2(x*y) - 3*abs(x-y),
+The formulas are combined as *2(x*y) - 3*abs(x-y)*,
 (using a weight factor of 2 for the first component
 and 3 for the second component; this is made in order
 to ensure that (1,1) gets a heavier score than (1,2) or (2,1)).
-
-\     -2   -1    0    1    2  
-   ┌────┬────┬────┬────┬────┐  
--2 │  8 │  1 │ -6 │-13 │-20 │  
-   ├────┼────┼────┼────┼────┤  
+```
+     -2   -1    0    1    2
+   ┌────┬────┬────┬────┬────┐
+-2 │  8 │  1 │ -6 │-13 │-20 │
+   ├────┼────┼────┼────┼────┤
 -1 │  1 │  2 │ -3 │ -8 │-13 │
    ├────┼────┼────┼────┼────┤
  0 │ -6 │ -3 │  0 │ -3 │ -6 │
@@ -58,4 +63,4 @@ to ensure that (1,1) gets a heavier score than (1,2) or (2,1)).
    ├────┼────┼────┼────┼────┤
  2 │-20 │-13 │ -6 │  1 │  8 │
    └────┴────┴────┴────┴────┘
-
+```
