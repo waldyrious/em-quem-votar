@@ -73,7 +73,7 @@ button {
 
 #results span.agree, #results span.disagree {
 	background-color: rgba(255, 255, 255, 0.15);
-	line-height: 8px;
+	line-height: 0; /* tighten around inner span.bar's height */
 }
 
 #results span.disagree span.bar, #results span.agree span.bar {
