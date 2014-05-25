@@ -67,7 +67,7 @@ with the simple multiplication table, or with a weight-less subtraction).
    └────┴────┴────┴────┴────┘
 ```
 
-To prevent agreement in the neutral score to not count positively,
+To prevent agreement in the neutral score from not counting positively,
 we can add a bias across the board, e.g. *2(x*y) - 3*abs(x-y) + 1*:
 ```
      -2   -1    0    1    2
@@ -83,3 +83,9 @@ we can add a bias across the board, e.g. *2(x*y) - 3*abs(x-y) + 1*:
  2 │-19 │-12 │ -5 │  2 │  9 │
    └────┴────┴────┴────┴────┘
 ```
+**Note:** This may look asymmetrical (it is),
+but that's a consequence of not allowing the central axes to be zero.
+Since they difference values (table 2) are subtracted from the initial table (which is symmetrical),
+the whole table ends up shifted downwards.
+
+However, it's worth noting that the difference beween any adjacent table cells is 7 accross the board.
