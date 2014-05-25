@@ -46,12 +46,7 @@ function calculate() {
 	var qs = document.querySelector("#questions");
 	
 	// Scoring uses the formula 2(x*y) - 3|x-y|.
-	// The first part ensures that matching choices reinforce each other:
-	// - matching values produce a positive score, and more so the stronger they are;
-	// - opposite values produce a negative score, and more so the stronger they are;
-	// The second part penalizes disagreement even for scores in the same direction,
-	// e.g. 1 & 2 should count less than either 1 & 1 and 2 & 2.
-	// It also ensures that "no opinion" still correlates (slightly) negatively with any opinion.
+	// See the README file for a detailed explanation.
 	// Note: the global score provides a single number that can be used in ranking the parties,
 	// but it is not currently used in the interface.
 
