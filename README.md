@@ -46,7 +46,7 @@ The formulas are combined as 2(x*y) - 3*abs(x-y),
 and 3 for the second component; this is made in order
 to ensure that (1,1) gets a heavier score than (1,2) or (2,1)).
      -2   -1    0    1    2
-   ┌────┬────┬────┬────┬────┐
+   ┌────┬────┬────┬────┬────┐  
 -2 │  8 │  1 │ -6 │-13 │-20 │
    ├────┼────┼────┼────┼────┤
 -1 │  1 │  2 │ -3 │ -8 │-13 │
